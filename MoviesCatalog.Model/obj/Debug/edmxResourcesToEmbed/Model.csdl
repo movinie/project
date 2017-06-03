@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CatalogModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CatalogEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Genres" EntityType="CatalogModel.Genres" />
+    <EntitySet Name="MovieGenres" EntityType="CatalogModel.MovieGenres" />
+    <EntitySet Name="sysdiagrams" EntityType="CatalogModel.sysdiagrams" />
+    <AssociationSet Name="FK_MovieGenres_Genres" Association="CatalogModel.FK_MovieGenres_Genres">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+    <EntitySet Name="Movies" EntityType="CatalogModel.Movies" />
+    <AssociationSet Name="FK_MovieGenres_Movies" Association="CatalogModel.FK_MovieGenres_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="MovieGenres" Relationship="CatalogModel.FK_MovieGenres_Genres" FromRole="Genres" ToRole="MovieGenres" />
+  </EntityType>
+  <EntityType Name="MovieGenres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieId" Type="Int32" Nullable="false" />
+    <Property Name="GenreId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Genres" Relationship="CatalogModel.FK_MovieGenres_Genres" FromRole="MovieGenres" ToRole="Genres" />
+    <NavigationProperty Name="Movies" Relationship="CatalogModel.FK_MovieGenres_Movies" FromRole="MovieGenres" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_MovieGenres_Genres">
+    <End Role="Genres" Type="CatalogModel.Genres" Multiplicity="1" />
+    <End Role="MovieGenres" Type="CatalogModel.MovieGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="Year" />
+    <Property Type="String" Name="Director" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Link" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MovieGenres" Relationship="CatalogModel.FK_MovieGenres_Movies" FromRole="Movies" ToRole="MovieGenres" />
+  </EntityType>
+  <Association Name="FK_MovieGenres_Movies">
+    <End Type="CatalogModel.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="CatalogModel.MovieGenres" Role="MovieGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

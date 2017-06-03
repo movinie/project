@@ -1,0 +1,27 @@
+﻿@model MoviesCatalog.Web.ViewModels.MovieViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            @foreach (var genre in Model.Genres)
+            {
+                <span>@genre |</span>
+            }
+            <p>Название: @Model.Name</p>
+            <p>Описание: @Model.Description</p>
+            <p>Год выпуска: @Model.Year</p>
+            <p>Режиссер: @Model.Director</p>
+            <p>Сайт: <a target="_blank" href="@Model.Link">@Model.Link</a>
+            </p>
+            <p>
+                @Html.ActionLink("Редактировать", "edit", "movies",
+                    new {id = Model.Id}, new {@class = "btn"})
+            </p>
+        </div>
+    </div>
+</div>

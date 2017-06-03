@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CatalogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CatalogModelStoreContainer">
+    <EntitySet Name="Genres" EntityType="CatalogModel.Store.Genres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MovieGenres" EntityType="CatalogModel.Store.MovieGenres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movies" EntityType="CatalogModel.Store.Movies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="CatalogModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_MovieGenres_Genres" Association="CatalogModel.Store.FK_MovieGenres_Genres">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MovieGenres_Movies" Association="CatalogModel.Store.FK_MovieGenres_Movies">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="MovieGenres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MovieId" Type="int" Nullable="false" />
+    <Property Name="GenreId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Year" Type="smallint" />
+    <Property Name="Director" Type="nvarchar" MaxLength="500" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_MovieGenres_Genres">
+    <End Role="Genres" Type="CatalogModel.Store.Genres" Multiplicity="1" />
+    <End Role="MovieGenres" Type="CatalogModel.Store.MovieGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MovieGenres_Movies">
+    <End Role="Movies" Type="CatalogModel.Store.Movies" Multiplicity="1" />
+    <End Role="MovieGenres" Type="CatalogModel.Store.MovieGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

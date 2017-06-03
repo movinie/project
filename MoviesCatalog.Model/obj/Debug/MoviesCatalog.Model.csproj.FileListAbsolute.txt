@@ -1,0 +1,15 @@
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.dll.config
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.dll
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.pdb
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\bin\Debug\EntityFramework.dll
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\bin\Debug\EntityFramework.xml
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\obj\Debug\MoviesCatalog.Model.dll
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\obj\Debug\MoviesCatalog.Model.pdb
+D:\Movies\MoviesCatalog\MoviesCatalog.Model\obj\Debug\MoviesCatalog.Model.csprojResolveAssemblyReference.cache
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.dll.config
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.dll
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\bin\Debug\MoviesCatalog.Model.pdb
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\bin\Debug\EntityFramework.dll
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\bin\Debug\EntityFramework.xml
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\obj\Debug\MoviesCatalog.Model.dll
+D:\Movies\mvc5\MoviesCatalog\MoviesCatalog.Model\obj\Debug\MoviesCatalog.Model.pdb

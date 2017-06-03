@@ -1,0 +1,46 @@
+﻿@model MoviesCatalog.Web.ViewModels.EditMovieViewModel
+@{
+    ViewBag.Title = "Добавление/Редактирование фильма";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @using (Html.BeginForm("SaveMovie", "movies", FormMethod.Post,
+        new {@class = "navbar-form"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    @foreach (var genre in Model.AllGenres)
+                    {
+                        var checkboxId = "genre" + genre.Id;
+
+                        if (Model.MovieGenres != null && Model.MovieGenres.Any() && Model.MovieGenres.Contains(genre.Id))
+                        {
+                            <input type="checkbox" checked="checked" name="movieGenres" id="@checkboxId" value="@genre.Id"/>
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="movieGenres" id="@checkboxId" value="@genre.Id"/>
+                        }
+                        <label class="label label-info" for="@checkboxId">@genre.Name</label>
+                    }
+               
+                    <p>Название: <input type="text" class="span12" value="@Model.Name" name="name" placeholder="Название">
+                    </p>
+                    <p>Описание: <textarea class="span12" name="description" placeholder="Описание">@Model.Description</textarea>
+                    </p>
+                    <p>Год выпуска: <input type="text" class="span12" name="year" value="@Model.Year" placeholder="Год выпуска">
+                    </p>
+                    <p>Режиссер: <input type="text" class="span12" name="director" value="@Model.Director" placeholder="Режиссер">
+                    </p>
+                    <p>Сайт: <input type="text" class="span12" value="@Model.Link" name="link" placeholder="Ссылка">
+                    </p>
+                    <p><button type="submit" class="btn btn-danger">Сохранить</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

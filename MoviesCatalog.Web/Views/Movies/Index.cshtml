@@ -1,0 +1,8 @@
+﻿@model MoviesCatalog.Web.ViewModels.MoviesViewModel
+@{
+    ViewBag.Title = "Каталог фильмов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" id="content">
+    @{ Html.RenderPartial("Partials/_MoviesContent", Model); }
+</div>
